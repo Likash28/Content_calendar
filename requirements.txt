@@ -1,6 +1,8 @@
-Flask
-requests
-textblob
-pillow
-gunicorn  # Optional, only if deploying using Gunicorn
-pymongo #for to connect with MongoDB
+Flask==2.3.2
+requests==2.31.0
+textblob==0.17.1
+pillow==10.0.0
+gunicorn==20.1.0  # Optional, only if deploying using Gunicorn
+pymongo==4.4.0  # For connecting to MongoDB
+cloudinary==1.29.0  # Required for uploading files to Cloudinary
+werkzeug==2.3.7  # For secure file handling with secure_filename

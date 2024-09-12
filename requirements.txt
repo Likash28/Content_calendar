@@ -1,0 +1,6 @@
+Flask
+requests
+textblob
+pillow
+gunicorn  # Optional, only if deploying using Gunicorn
+pymongo #for to connect with MongoDB

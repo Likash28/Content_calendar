@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    /* Background styling */
+    body {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    /* Title heading styling */
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Form container */
+    .form-container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Form styling */
+    .form-control {
+      background-color: #2b2b2b;
+      color: #fff;
+      border: none;
+    }
+
+    .form-control:focus {
+      background-color: #333;
+      color: #fff;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Button styling */
+    .btn-primary {
+      background-color: #ff7e5f;
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.95);
+    }
+
+    /* Input group styling */
+    .input-group-text {
+      background-color: #ff7e5f;
+      border: none;
+      color: #fff;
+    }
+
+    /* Form feedback styling */
+    .valid-feedback {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    /* Hover effects for inputs */
+    .form-control:hover {
+      background-color: #444;
+    }
+
+    /* Updated button styling */
+    .upload-button {
+      background-color: #ff9100;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      border: 1px solid #dee2e6;
+    }
+
+    .upload-button:hover {
+      background-color: #5a6268;
+    }
+
+    /* Hide the actual file input */
+    .hidden-file-input {
+      visibility: hidden;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* Style for the uploaded file name */
+    .file-name-display {
+      margin-top: 10px;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    /* Animation */
+    .form-row, .form-group {
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Custom styling for Social Media section */
+    .social-media-section {
+      margin-top: 20px;
+      color: #fff;
+    }
+
+    .social-media-section h5 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .social-media-checkboxes {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .social-media-checkboxes .form-check {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .social-media-checkboxes .form-check:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .social-media-checkboxes .form-check label {
+      margin-left: 5px;
+      color: #fff;
+    }
+    .btn-primary {
+    background-color: #ff7e5f;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+  .btn-primary:hover {
+    background-color: #feb47b; /* Optional: a slightly lighter color on hover */
+    transform: scale(1.05);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    }
+
+  .btn-primary:active {
+    transform: scale(0.95);
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Welcome to Content Calendar</h1>
+  <div class="form-container">
+    <form id="mainForm" method="POST" action="/" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationServer01">First name</label>
+          <input type="text" class="form-control" name = "First_Name" id="validationServer01" placeholder="First name" required>
+          <div id="firstNameFeedback" class="invalid-feedback">Please enter your First name properly.</div>
+          <div id="firstNameSuccess" class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer02">Last name</label>
+          <input type="text" class="form-control" name = "Last_Name" id="validationServer02" placeholder="Last name" required>
+          <div id="lastNameFeedback" class="invalid-feedback">Please enter your Last name properly.</div>
+          <div id="lastNameSuccess" class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="uploadDocs">Upload Document</label>
+          <div class="input-group">
+            <input type="file" name = "file" class="form-control-file hidden-file-input is-invalid" id="uploadDocs" aria-describedby="fileUploadButton">
+            <label class="btn upload-button" for="uploadDocs" id="fileUploadButton">Click to Upload Document</label>
+            <div class="file-name-display">Please upload a document.</div>
+            <div class="invalid-feedback">Please upload a document.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationServer04">Country</label>
+          <select class="custom-select is-invalid" name = "country" id="validationServer04" required>
+            <option selected disabled value="">Choose...</option>
+          </select>
+        </div>
+
+         <!-- Industry options here -->
+
+         <div class="col-md-6 mb-3">
+          <label for="industries">Industries</label>
+          <select class="custom-select is-invalid" name = "industry" id="industries" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="Agriculture, Forestry, and Fishing">Agriculture, Forestry, and Fishing</option>
+            <option value="Mining and Quarrying">Mining and Quarrying</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option value="Utilities (Electricity, Gas, Water Supply)">Utilities (Electricity, Gas, Water Supply)</option>
+            <option value="Construction">Construction</option>
+            <option value="Wholesale and Retail Trade">Wholesale and Retail Trade</option>
+            <option value="Transportation and Storage">Transportation and Storage</option>
+            <option value="Accommodation and Food Services">Accommodation and Food Services</option>
+            <option value="Information and Communication">Information and Communication</option>
+            <option value="Financial Services and Insurance">Financial Services and Insurance</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Professional, Scientific, and Technical Services">Professional, Scientific, and Technical Services</option>
+            <option value="Administrative and Support Services">Administrative and Support Services</option>
+            <option value="Public Administration and Defense">Public Administration and Defense</option>
+            <option value="Education">Education</option>
+            <option value="Healthcare and Social Assistance">Healthcare and Social Assistance</option>
+            <option value="Arts, Entertainment, and Recreation">Arts, Entertainment, and Recreation</option>
+            <option value="Other Service Activities">Other Service Activities</option>
+          </select>
+          <div class="invalid-feedback" id="industryFeedback">Please select a valid industry.</div>
+        </div>
+      </div>
+
+      <!-- Social Media Checkboxes -->
+      <div class="social-media-section">
+        <h5>Social Media Accounts</h5>
+        <div class="social-media-checkboxes">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="facebook">
+            <label class="form-check-label" for="facebook">Facebook</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="linkedin">
+            <label class="form-check-label" for="linkedin">LinkedIn</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="instagram">
+            <label class="form-check-label" for="instagram">Instagram</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="twitter">
+            <label class="form-check-label" for="twitter">Twitter</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms and Conditions Checkbox -->
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="termsCheck" >
+        <label class="form-check-label" for="termsCheck">
+          I agree to the <a href="#" style="color: #fff; text-decoration: underline;">terms and conditions</a>.
+        </label>
+        <div class="invalid-feedback">
+          You must agree to the terms and conditions before submitting.
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
+  </div>
+
+  
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Update file name display on file input change
+    document.getElementById('uploadDocs').addEventListener('change', function() {
+      var fileName = this.files[0] ? this.files[0].name : "Please upload a document.";
+      document.querySelector('.file-name-display').textContent = fileName;
+      document.querySelector('.invalid-feedback').style.display = fileName ? 'none' : 'block';
+    });
+  
+    // Fetch and populate country data
+    document.addEventListener('DOMContentLoaded', function() {
+      const countrySelect = document.getElementById('validationServer04');
+      fetch('https://restcountries.com/v3.1/all')
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.name.common;
+            option.textContent = country.name.common;
+            countrySelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Error fetching country data:', error));
+    });
+  
+    // Validate name fields
+    function validateInput(id, feedbackId, successId) {
+      const input = document.getElementById(id);
+      const feedback = document.getElementById(feedbackId);
+      const success = document.getElementById(successId);
+  
+      input.addEventListener('input', function() {
+        if (input.value.length >= 3) {
+          feedback.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          feedback.style.display = 'block';
+          success.style.display = 'none';
+        }
+      });
+    }
+  
+    document.getElementById('mainForm').addEventListener('submit', function(event) {
+    var industrySelect = document.getElementById('industries');
+    var industryFeedback = document.getElementById('industryFeedback');
+    var valid = true; // Assume the form is valid
+
+    // Check industry selection
+    if (industrySelect.value === "") {
+      industrySelect.classList.add('is-invalid');
+      industryFeedback.style.display = 'block';
+      valid = false; // Form is not valid
+    } else {
+      industrySelect.classList.remove('is-invalid');
+      industryFeedback.style.display = 'none';
+    }
+
+    // Validate First Name and Last Name Fields
+    if (document.getElementById('validationServer01').value.length < 3) {
+      document.getElementById('validationServer01').classList.add('is-invalid');
+      valid = false;
+    } else {
+      document.getElementById('validationServer01').classList.remove('is-invalid');
+    }
+    
+    if (document.getElementById('validationServer02').value.length < 3) {
+      document.getElementById('validationServer02').classList.add('is-invalid');
+      valid = false;
+    } else {
+      document.getElementById('validationServer02').classList.remove('is-invalid');
+    }
+
+    if (!valid) {
+      event.preventDefault(); // Prevent form submission if not valid
+    } else {
+      // Redirect to target.html after successful validation
+      window.location.href = 'target.html';
+    }
+  });
+
+  
+    document.getElementById('industries').addEventListener('change', function() {
+      // Hide feedback message when a valid option is selected
+      if (this.value !== "") {
+        this.classList.remove('is-invalid');
+        document.getElementById('industryFeedback').style.display = 'none';
+      }
+    });
+  
+    // Validate First Name and Last Name Fields
+    validateInput('validationServer01', 'firstNameFeedback', 'firstNameSuccess');
+    validateInput('validationServer02', 'lastNameFeedback', 'lastNameSuccess');
+  </script>
+  
+</body>
+
+</html>

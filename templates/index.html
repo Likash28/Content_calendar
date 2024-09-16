@@ -248,9 +248,9 @@
           <div id="lastNameSuccess" class="valid-feedback">Looks good!</div>
         </div>
         <div class="col-md-4 mb-3">
-          <label for="uploadDocs">Upload Document</label>
+          <label for="uploadDocs">Upload Document (PDF Only)</label>
           <div class="input-group">
-            <input type="file" name="file" class="form-control-file hidden-file-input is-invalid" id="uploadDocs" aria-describedby="fileUploadButton">
+            <input type="file" name="file" class="form-control-file hidden-file-input is-invalid" id="uploadDocs" aria-describedby="fileUploadButton" accept=".pdf, .doc, .docx">
             <label class="btn upload-button" for="uploadDocs" id="fileUploadButton">Click to Upload Document</label>
             <div class="file-name-display">Please upload a document.</div>
             <div class="invalid-feedback">Please upload a document.</div>
@@ -313,15 +313,22 @@
             <label class="form-check-label" for="instagram">Instagram</label>
           </div>
         </div>
-      </div>
-
-      <button class="btn btn-primary" type="submit">Submit form</button>
-    </form>
-  </div>
-  <!-- Preloader -->
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+  
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+          {{ error_message }}
+        </div>
+        {% endif %}
+      </form>
+        <!-- Preloader -->
   <div class="preloader" id="preloader">
     <div class="lds-hourglass"></div>
   </div>
+    </div>
+
   
    
 
@@ -486,13 +493,20 @@ document.getElementById('mainForm').addEventListener('submit', function(event) {
 
   document.addEventListener('DOMContentLoaded', function() {
     const countrySelect = document.getElementById('validationServer04');
+    
     fetch('https://restcountries.com/v3.1/all')
       .then(response => response.json())
       .then(data => {
-        data.forEach(country => {
+        // Sort countries alphabetically
+        const sortedCountries = data
+          .map(country => country.name.common)
+          .sort((a, b) => a.localeCompare(b));
+        
+        // Create and append options
+        sortedCountries.forEach(countryName => {
           const option = document.createElement('option');
-          option.value = country.name.common;
-          option.textContent = country.name.common;
+          option.value = countryName;
+          option.textContent = countryName;
           countrySelect.appendChild(option);
         });
       })

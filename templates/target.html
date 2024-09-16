@@ -21,7 +21,7 @@
       padding: 50px;
       border-radius: 15px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      width: 900px;
+      width: 1000px;
       max-width: 100%;
       color: white;
       text-align: center;
@@ -31,7 +31,7 @@
       color: #ffcc99;
       margin-bottom: 30px;
       font-size: 2.5rem;
-      line-height: 1.2;
+      line-height: 1.5;
     }
 
     .form-group {
@@ -55,9 +55,36 @@
     }
 
     .form-group input[type="checkbox"] {
-      margin-right: 10px;
-      accent-color: #ffc61c;
+      width: 22px;
+      height: 20px;
+      appearance: none;
+      border: 2px solid #ff9933;
+      border-radius: 5px;
+      background-color: #4d2600;
       cursor: pointer;
+      position: relative;
+      margin-right: 10px;
+    }
+
+    .form-group input[type="checkbox"]:checked {
+      background-color: #ff9933;
+    }
+
+    .form-group input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 16px;
+      border: solid #4d2600;
+      border-width: 0 3px 3px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .form-group input[type="checkbox"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.3);
     }
 
     .form-group label:hover {
@@ -80,35 +107,6 @@
       background-color: #cc5200;
     }
 
-    /* Custom checkbox styling */
-    .form-group input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      appearance: none;
-      border: 2px solid #ff9933;
-      border-radius: 5px;
-      background-color: #4d2600;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .form-group input[type="checkbox"]:checked::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 12px;
-      height: 6px;
-      border: solid #ff9933;
-      border-width: 0 2px 2px 0;
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    .form-group input[type="checkbox"]:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.3);
-    }
-
     .pdf-btn {
       display: inline-block;
       margin-top: 20px;
@@ -129,23 +127,23 @@
 <body>
   <div class="container">
     <h1>Choose Your Target Audience</h1>
-    <form>
+    <form method="POST">
       <div class="form-group">
-        <label><input type="checkbox"> Young professionals (25Y-34Y)</label>
-        <label><input type="checkbox"> Parents</label>
-        <label><input type="checkbox"> Retirees</label>
-        <label><input type="checkbox"> College students</label>
-        <label><input type="checkbox"> Small business owners</label>
-        <label><input type="checkbox"> Corporate executives</label>
-        <label><input type="checkbox"> Fitness enthusiasts</label>
-        <label><input type="checkbox"> Tech-savvy individuals</label>
-        <label><input type="checkbox"> Eco-conscious consumers</label>
-        <label><input type="checkbox"> Luxury shoppers</label>
-        <label><input type="checkbox"> Budget-conscious consumers</label>
-        <label><input type="checkbox"> DIY enthusiasts</label>
-        <label><input type="checkbox"> Frequent travelers</label>
-        <label><input type="checkbox"> Health and wellness focused</label>
-        <label><input type="checkbox"> Millennials</label>
+        <label><input type="checkbox" name="audience" value="Young professionals (Age 25-34)"> Young professionals (Age 25-34)</label>
+        <label><input type="checkbox" name="audience" value="Parents"> Parents</label>
+        <label><input type="checkbox" name="audience" value="Retirees"> Retirees</label>
+        <label><input type="checkbox" name="audience" value="College students"> College students</label>
+        <label><input type="checkbox" name="audience" value="Small business owners"> Small business owners</label>
+        <label><input type="checkbox" name="audience" value="Corporate executives"> Corporate executives</label>
+        <label><input type="checkbox" name="audience" value="Fitness enthusiasts"> Fitness enthusiasts</label>
+        <label><input type="checkbox" name="audience" value="Tech-savvy individuals"> Tech-savvy individuals</label>
+        <label><input type="checkbox" name="audience" value="Eco-conscious consumers"> Eco-conscious consumers</label>
+        <label><input type="checkbox" name="audience" value="Luxury shoppers"> Luxury shoppers</label>
+        <label><input type="checkbox" name="audience" value="Budget-conscious consumers"> Budget-conscious consumers</label>
+        <label><input type="checkbox" name="audience" value="DIY enthusiasts"> DIY enthusiasts</label>
+        <label><input type="checkbox" name="audience" value="Frequent travelers"> Frequent travelers</label>
+        <label><input type="checkbox" name="audience" value="Health and wellness focused"> Health and wellness focused</label>
+        <label><input type="checkbox" name="audience" value="Millennials"> Millennials</label>
       </div>
 
       <button type="submit" class="submit-btn">Submit Form</button>
